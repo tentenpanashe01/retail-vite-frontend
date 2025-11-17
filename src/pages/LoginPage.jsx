@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserService } from "../services/userService";
 import Swal from "sweetalert2";
-import "./LoginPage.css"; // 🎨 Import animation styles
+import "./LoginPage.css";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
@@ -17,6 +17,7 @@ function LoginPage() {
     try {
       const res = await UserService.login(username, password);
 
+      // Save user details
       localStorage.setItem("token", res.token);
       localStorage.setItem("roles", JSON.stringify(res.roles));
       localStorage.setItem("username", res.username);
@@ -30,15 +31,17 @@ function LoginPage() {
         localStorage.removeItem("shopName");
       }
 
+      // SUCCESS POPUP + REDIRECT
       Swal.fire({
         icon: "success",
         title: "Welcome",
         text: `Logged in as ${res.fullName}`,
         timer: 1200,
         showConfirmButton: false,
+      }).then(() => {
+        navigate("/redirect");   // 🔥 Now redirect works
       });
 
-      navigate("/redirect");
     } catch (err) {
       Swal.fire({
         icon: "error",
@@ -52,14 +55,12 @@ function LoginPage() {
 
   return (
     <div className="login-container">
-      {/* Background bubbles */}
       <ul className="bubbles">
         {Array.from({ length: 10 }).map((_, i) => (
           <li key={i}></li>
         ))}
       </ul>
 
-      {/* Login form */}
       <form onSubmit={handleLogin} className="login-form">
         <h2>Retail POS Login</h2>
 
