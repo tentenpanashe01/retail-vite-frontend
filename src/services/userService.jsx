@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 export const UserService = {
   async login(username, password) {
     try {
-      const res = await api.post("api/users/login", { username, password });
+      const res = await api.post("/users/login", { username, password });
 
       const {
         token,
