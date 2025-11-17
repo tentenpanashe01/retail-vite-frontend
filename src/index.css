@@ -1,0 +1,24 @@
+/* Compact SweetAlert popups */
+.swal2-popup.small-popup {
+  width: 350px !important;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+
+.swal2-title {
+  color: #0d1b2a !important; /* Navy blue */
+}
+
+.swal2-confirm.btn-primary {
+  background-color: #0d1b2a !important;
+  border: none;
+}
+
+.swal2-cancel.btn-secondary {
+  background-color: #6c757d !important;
+  border: none;
+}
+.hover-scale:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
